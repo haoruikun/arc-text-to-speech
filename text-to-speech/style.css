@@ -1,0 +1,23 @@
+.cls-1 {
+  fill: #990000;
+}
+.cls-2 {
+  fill: #fff;
+}
+
+.text-to-speech-button {
+  background-color: transparent;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  padding: 0;
+}
+
+.text-to-speech-button svg {
+  width: 30px;
+  height: 30px;
+  display: block;
+  margin-right: 10px;
+}

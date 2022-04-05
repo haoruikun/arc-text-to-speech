@@ -9,16 +9,23 @@ const TextToSpeech = () => {
   const { speak, cancel, speaking } = useSpeechSynthesis();
 
   useEffect(() => {
-    console.log(globalContent.content_elements);
     const { basic: headlines = "" } = globalContent?.headlines || {};
     const { basic: subheadlines = "" } = globalContent?.subheadlines || {};
     let body = "";
     globalContent.content_elements.forEach((element) => {
-      if (element.type == "text") {
+      if (element.type == "text" || element.type == "header") {
         body += element.content;
+        body += " ";
+      } else if (element.type == "quote") {
+        element.content_elements.forEach((e) => {
+          body += e.content;
+        });
+        body += " cited from ";
+        body += element.citation.content;
       }
     });
-    setText(headlines + " " + subheadlines + " " + body);
+    body = body.replace(/<\/?[^>]+(>|$)/g, "");
+    setText(headlines + ". " + subheadlines + ". " + body);
   }, []);
   return (
     <>
